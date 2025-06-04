@@ -11,7 +11,7 @@ This is a single-page, responsive website built to display events with a modern,
 - **No external dependencies**: All styling and functionality are implemented without frameworks.
 
 ## How to Run the Project
-1. Clone the repository from [GitHub](https://github.com/your-username/event-finder).
+1. Clone the repository from [GitHub](https://sadiazaffar.github.io/WEBSITE/).
 2. Open `index.html` in a modern web browser (Chrome, Firefox, etc.).
 3. No additional setup is required as the only external resource is Google Fonts, loaded via CDN.
 
