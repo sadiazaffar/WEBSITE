@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Finder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9fafb;
+        }
+        /* Navigation Bar */
+        nav {
+            background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+            padding: 1.2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo img {
+            height: 45px;
+            transition: transform 0.3s ease;
+        }
+        .nav-logo img:hover {
+            transform: scale(1.1);
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .nav-links li a:hover {
+            color: #dbeafe;
+            transform: translateY(-2px);
+        }
+        .nav-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .nav-toggle:hover {
+            transform: rotate(90deg);
+        }
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #60a5fa, #a5b4fc);
+            text-align: center;
+            padding: 5rem 1rem;
+            color: #fff;
+        }
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Search Bar */
+        .search-bar {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+        .search-bar input:focus {
+            outline: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        /* Events Section */
+        .events-section {
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .events-section h2 {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: #1e3a8a;
+            font-weight: 600;
+            font-size: 2.2rem;
+        }
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .event-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        .event-card h3 {
+            font-size: 1.4rem;
+            color: #1e3a8a;
+            margin-bottom: 0.75rem;
+        }
+        .event-card p {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: #555;
+        }
+        .event-card button {
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            color: #fff;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+        .event-card button:hover {
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+        }
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+            color: #fff;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+        .contact-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .contact-section p {
+            font-size: 1.1rem;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background: #1e3a8a;
+                padding: 1.5rem;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-toggle {
+                display: block;
+            }
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            .events-section h2 {
+                font-size: 1.8rem;
+            }
+            .event-grid {
+                grid-template-columns: 1fr;
+            }
+            .search-bar {
+                margin: 1.5rem auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="C:\Users\zsadi\Desktop\New folder\logo.png" alt="Logo">
+            </div>
+            <button class="nav-toggle">☰</button>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <h1>Discover Events Near You</h1>
+    </section>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search events by name...">
+    </div>
+
+    <!-- Featured Events -->
+    <section id="events" class="events-section">
+        <h2>Featured Events</h2>
+        <div class="event-grid" id="eventContainer"></div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2>Contact Us</h2>
+        <p>Email: info@eventfinder.com | Phone: (123) 456-7890</p>
+    </section>
+
+    <script>
+        // Dummy JSON data for events
+        const eventsData = [
+            {
+                name: "Music Festival",
+                date: "July 15, 2025, 6:00 PM",
+                location: "Central Park, NY",
+                description: "Join us for a night of live music featuring top artists."
+            },
+            {
+                name: "Tech Conference",
+                date: "August 10, 2025, 9:00 AM",
+                location: "Convention Center, SF",
+                description: "Explore the latest in tech innovation with industry leaders."
+            },
+            {
+                name: "Art Exhibition",
+                date: "June 20, 2025, 10:00 AM",
+                location: "City Gallery, LA",
+                description: "Discover stunning artworks from local and international artists."
+            },
+            {
+                name: "Food Truck Rally",
+                date: "September 5, 2025, 12:00 PM",
+                location: "Downtown Square, Chicago",
+                description: "Taste a variety of cuisines from the best food trucks in town."
+            }
+        ];
+
+        // Function to render event cards
+        function renderEvents(events) {
+            const container = document.getElementById('eventContainer');
+            container.innerHTML = '';
+            events.forEach(event => {
+                const card = `
+                    <div class="event-card">
+                        <h3>${event.name}</h3>
+                        <p><strong>Date:</strong> ${event.date}</p>
+                        <p><strong>Location:</strong> ${event.location}</p>
+                        <p>${event.description}</p>
+                        <button>Register</button>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredEvents = eventsData.filter(event =>
+                event.name.toLowerCase().includes(searchTerm)
+            );
+            renderEvents(filteredEvents);
+        });
+
+        // Toggle mobile menu
+        document.querySelector('.nav-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Initial render
+        renderEvents(eventsData);
+    </script>
+</body>
+</html>
