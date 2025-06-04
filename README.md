@@ -26,7 +26,7 @@ This is a single-page, responsive website built to display events with a modern,
 - **Mobile Optimization**: Refined spacing and typography for better readability on smaller screens.
 
 ## Live Preview
-[https://your-username.github.io/event-finder](https://your-username.github.io/event-finder)
+https://sadiazaffar.github.io/WEBSITE/
 
 ## Notes
 - The event data is loaded from a dummy JSON array in the JavaScript code, simulating a data fetch.
